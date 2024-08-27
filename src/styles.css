@@ -1,1 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
+body {
+  font-family: "Helvetica Neue", sans-serif;
+  background-color: #f8f9fc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
