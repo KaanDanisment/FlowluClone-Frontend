@@ -1,0 +1,53 @@
+<div class="container mt-4">
+  <div class="row">
+    <div
+      class="col-md-4"
+      *ngFor="let column of columns"
+      cdkDropList
+      [cdkDropListData]="getTasksByStatus(column.status)"
+      [cdkDropListConnectedTo]="connectedLists"
+      [id]="column.id"
+      class="kanban-column"
+      (cdkDropListDropped)="drop($event, column.status)"
+    >
+      <div class="card">
+        <div class="card-header">{{ column.title }}</div>
+        <div class="card-body">
+          <div
+            class="card mb-2"
+            *ngFor="let task of getTasksByStatus(column.status)"
+            cdkDrag
+          >
+            <div class="card-body position-relative">
+              <h5 class="card-title">{{ task.name }}</h5>
+              <small class="text-muted" *ngIf="task.projectName"
+                >Project: {{ task.projectName }}</small
+              >
+            </div>
+            <div class="task-options">
+              <i
+                class="fa-solid fa-ellipsis-vertical"
+                (click)="toggleMenu(task.id)"
+              ></i>
+              <ul *ngIf="openMenuIndex === task.id" class="task-menu">
+                <li>
+                  <span style="cursor: pointer" (click)="editTask(task.id)"
+                    >Edit</span
+                  >
+                </li>
+                <li>
+                  <span
+                    class="open-sidebar-span"
+                    style="cursor: pointer"
+                    (click)="deleteTask(task.id)"
+                    >Delete</span
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

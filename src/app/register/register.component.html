@@ -1,73 +1,89 @@
-<div class="signup-container">
-  <h2>Create Your Account</h2>
-  <form [formGroup]="registerForm" (ngSubmit)="register()">
-    <input
-      type="email"
-      id="email"
-      name="email"
-      formControlName="email"
-      class="form-control"
-      placeholder="Email"
-    />
-    <div
-      class="alert alert-danger"
-      *ngIf="
-        registerForm.get('email')?.hasError('required') &&
-        registerForm.get('email')?.dirty
-      "
-    >
-      Email is required
-    </div>
-    <input
-      type="text"
-      name="password"
-      formControlName="password"
-      class="form-control"
-      placeholder="Password"
-    />
-    <div
-      class="alert alert-danger"
-      *ngIf="
-        registerForm.get('password')?.hasError('required') &&
-        registerForm.get('password')?.dirty
-      "
-    >
-      Password is required
-    </div>
-    <input
-      type="text"
-      id="firstName"
-      name="firstName"
-      formControlName="firstName"
-      class="form-control"
-      placeholder="First Name"
-    />
-    <div
-      class="alert alert-danger"
-      *ngIf="
-        registerForm.get('firstName')?.hasError('required') &&
-        registerForm.get('firstName')?.dirty
-      "
-    >
-      First Name is required
-    </div>
-    <input
-      type="text"
-      id="lastName"
-      name="lastName"
-      formControlName="lastName"
-      class="form-control"
-      placeholder="Last Name"
-    />
-    <div
-      class="alert alert-danger"
-      *ngIf="
-        registerForm.get('lastName')?.hasError('required') &&
-        registerForm.get('lastName')?.dirty
-      "
-    >
-      Last Name is required
-    </div>
-    <button type="submit" [disabled]="registerForm.invalid">Sign Up</button>
-  </form>
+<div class="container d-flex justify-content-center align-items-center vh-100">
+  <div class="card p-4 shadow-sm" style="max-width: 400px; width: 100%">
+    <h2 class="text-center mb-4">Create Your Account</h2>
+    <form [formGroup]="registerForm" (ngSubmit)="register()">
+      <div class="form-group mb-3">
+        <input
+          type="email"
+          id="email"
+          name="email"
+          formControlName="email"
+          class="form-control"
+          placeholder="Email"
+        />
+        <div
+          class="alert alert-danger mt-2"
+          *ngIf="
+            registerForm.get('email')?.hasError('required') &&
+            registerForm.get('email')?.dirty
+          "
+        >
+          Email is required
+        </div>
+      </div>
+      <div class="form-group mb-3">
+        <input
+          type="password"
+          name="password"
+          formControlName="password"
+          class="form-control"
+          placeholder="Password"
+        />
+        <div
+          class="alert alert-danger mt-2"
+          *ngIf="
+            registerForm.get('password')?.hasError('required') &&
+            registerForm.get('password')?.dirty
+          "
+        >
+          Password is required
+        </div>
+      </div>
+      <div class="form-group mb-3">
+        <input
+          type="text"
+          id="firstName"
+          name="firstName"
+          formControlName="firstName"
+          class="form-control"
+          placeholder="First Name"
+        />
+        <div
+          class="alert alert-danger mt-2"
+          *ngIf="
+            registerForm.get('firstName')?.hasError('required') &&
+            registerForm.get('firstName')?.dirty
+          "
+        >
+          First Name is required
+        </div>
+      </div>
+      <div class="form-group mb-3">
+        <input
+          type="text"
+          id="lastName"
+          name="lastName"
+          formControlName="lastName"
+          class="form-control"
+          placeholder="Last Name"
+        />
+        <div
+          class="alert alert-danger mt-2"
+          *ngIf="
+            registerForm.get('lastName')?.hasError('required') &&
+            registerForm.get('lastName')?.dirty
+          "
+        >
+          Last Name is required
+        </div>
+      </div>
+      <button
+        type="submit"
+        class="btn btn-primary w-100"
+        [disabled]="registerForm.invalid"
+      >
+        Sign Up
+      </button>
+    </form>
+  </div>
 </div>

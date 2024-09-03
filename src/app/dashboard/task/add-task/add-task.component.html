@@ -1,0 +1,65 @@
+<div class="add-task-sidebar" [ngClass]="{ open: isOpen }">
+  <button (click)="closeSidebar()" class="close-btn">Kapat</button>
+  <h2>Yeni Görev Oluştur</h2>
+  <form [formGroup]="taskForm" (ngSubmit)="saveTask()">
+    <div>
+      <label for="task">Görev Adı:</label>
+      <input
+        type="text"
+        id="task"
+        name="task"
+        formControlName="name"
+        placeholder="Görev Adını Girin"
+      />
+    </div>
+    <div>
+      <label for="description">Açıklama:</label>
+      <textarea
+        id="description"
+        name="description"
+        formControlName="description"
+        placeholder="Açıklama"
+        (input)="autoGrow($event)"
+      ></textarea>
+      <div>
+        <div>
+          <label for="start">Start Date</label>
+          <label style="margin-left: 320px" for="end">End Date</label>
+        </div>
+        <div class="d-flex">
+          <input
+            class="me-3"
+            type="date"
+            id="start"
+            name="start"
+            formControlName="startDate"
+            (change)="onStartDateChange($event)"
+          />
+          <input
+            type="date"
+            id="end"
+            name="end"
+            formControlName="endDate"
+            [min]="minEndDate"
+          />
+        </div>
+      </div>
+      <div>
+        <label for="project">Select Project:</label>
+        <select class="form-control" formControlName="project" id="project">
+          <option value="">-- Select Project --</option>
+          <option *ngFor="let project of projects" [value]="project.id">
+            {{ project.name }} - {{ project.customerName }}
+          </option>
+        </select>
+      </div>
+    </div>
+    <button
+      type="submit"
+      class="btn btn-primary mt-3"
+      [disabled]="taskForm.invalid"
+    >
+      Save
+    </button>
+  </form>
+</div>

@@ -1,0 +1,32 @@
+<div class="container mt-4">
+  <div class="table-container" (mousemove)="onMouseMove($event)">
+    <table>
+      <thead>
+        <tr>
+          <th>Project Name</th>
+          <th>Status</th>
+          <th>Start Date</th>
+          <th>End Date</th>
+          <th>Owner</th>
+
+          <!-- Diğer kolonlar -->
+        </tr>
+      </thead>
+      <!-- <tbody>
+          <tr *ngFor="let project of projects">
+            <td>{{ project.name }}</td>
+            <td>{{ project.status }}</td>
+            <td>{{ project.startDate | date }}</td>
+            <td>{{ project.endDate | date }}</td>
+            <td>{{ project.owner }}</td>
+            <td>
+              
+              <button (click)="editProject(project)">Edit</button>
+              <button (click)="deleteProject(project)">Delete</button>
+            </td>
+         
+          </tr>
+        </tbody> -->
+    </table>
+  </div>
+</div>

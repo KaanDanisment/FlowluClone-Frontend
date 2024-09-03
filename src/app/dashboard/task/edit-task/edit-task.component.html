@@ -1,0 +1,73 @@
+<div class="edit-task-sidebar" [ngClass]="{ open: isOpen }">
+  <button (click)="closeSidebar()" class="close-btn">Kapat</button>
+  <h2>Edit Task</h2>
+  <form [formGroup]="taskForm" (ngSubmit)="updateTask()">
+    <div>
+      <label for="task">Task Name:</label>
+      <input
+        type="text"
+        id="task"
+        name="task"
+        formControlName="name"
+        placeholder="Görev Adını Girin"
+      />
+    </div>
+    <div>
+      <label for="description">Açıklama:</label>
+      <textarea
+        id="description"
+        name="description"
+        formControlName="description"
+        placeholder="Açıklama"
+        (input)="autoGrow($event)"
+      ></textarea>
+      <div>
+        <label for="status">Durum:</label>
+        <select formControlName="status" id="status">
+          <option value="to-do">To Do</option>
+          <option value="in-progress">In Progress</option>
+          <option value="completed">Completed</option>
+        </select>
+      </div>
+      <div>
+        <div>
+          <label for="start">Start Date</label>
+          <label style="margin-left: 320px" for="end">End Date</label>
+        </div>
+        <div class="d-flex">
+          <input
+            class="me-3"
+            type="date"
+            id="start"
+            name="start"
+            formControlName="startDate"
+            (change)="onStartDateChange($event)"
+          />
+          <input
+            type="date"
+            id="end"
+            name="end"
+            formControlName="endDate"
+            [min]="minEndDate"
+          />
+        </div>
+      </div>
+      <div>
+        <label for="project">Select Project:</label>
+        <select class="form-control" formControlName="project" id="project">
+          <option value="">-- Select Project --</option>
+          <option *ngFor="let project of projects" [value]="project.id">
+            {{ project.name }} - {{ project.customerName }}
+          </option>
+        </select>
+      </div>
+    </div>
+    <button
+      type="submit"
+      class="btn btn-primary mt-3"
+      [disabled]="taskForm.invalid"
+    >
+      Save
+    </button>
+  </form>
+</div>

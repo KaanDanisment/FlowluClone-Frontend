@@ -1,0 +1,78 @@
+.list-group-item {
+  display: flex; /* Flexbox ekleyin */
+  justify-content: space-between; /* İçeriği sağa ve sola yerleştirin */
+  align-items: center; /* Dikeyde ortalayın */
+  margin-bottom: 10px;
+  border-radius: 5px;
+  padding: 10px; /* İçeriği ayırmak için padding ekleyin */
+}
+
+.list-group-item h5 {
+  margin: 0;
+}
+
+.list-group-item p {
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+.list-group-item small {
+  display: block;
+  margin-top: 5px;
+}
+
+input[type="checkbox"] {
+  transform: scale(1.5);
+}
+
+.task-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  padding: 10px;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  margin-bottom: 10px;
+}
+
+.task-content {
+  flex: 1; /* İçeriğin genişlemesini sağlamak için */
+}
+
+.task-options {
+  position: relative;
+  margin-left: auto; /* Otomatik olarak en sağa yerleşmesini sağlar */
+}
+
+.task-options i {
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.task-menu {
+  position: absolute;
+  right: 0;
+  top: 20px;
+  background-color: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  list-style-type: none;
+  padding: 5px 0;
+  margin: 0;
+  z-index: 1000;
+}
+
+.task-menu li {
+  padding: 5px 10px;
+}
+
+.task-menu li span {
+  text-decoration: none;
+  color: #333;
+}
+
+.task-menu li span:hover {
+  background-color: #f5f5f5;
+}

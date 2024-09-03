@@ -1,0 +1,9 @@
+.sidebar {
+  width: 100px;
+  height: calc(100vh - 56px); /* Navbar'ın altına kadar uzanmasını sağlar */
+  position: fixed;
+  top: 56px;
+  left: 0;
+  background-color: #343a40;
+  padding-top: 20px;
+}

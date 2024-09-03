@@ -26,17 +26,23 @@ export class LoginComponent {
     });
   }
   ngOnInit() {
+    if (this.authService.isAuthenticated()) {
+      this.router.navigate(['/dashboard']);
+    }
     this.createLoginFrom();
   }
   login() {
     this.model = Object.assign({}, this.loginForm.value);
     this.authService.login(this.model).subscribe({
       next: () => {
-        this.router.navigate(['/home']);
+        this.router.navigate(['/dashboard']);
       },
       error: (err) => {
         console.error('Login failed:', err.error);
       },
     });
+  }
+  navigateToRegister() {
+    this.router.navigate(['/register']);
   }
 }

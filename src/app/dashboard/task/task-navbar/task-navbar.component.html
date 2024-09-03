@@ -1,0 +1,37 @@
+<div class="d-flex justify-content-between">
+  <h3>Task</h3>
+  <div class="btn-group">
+    <a
+      class="btn btn-light"
+      type="button"
+      [ngClass]="{ active: selectedButton === 'To-Do List' }"
+      (click)="selectButton('To-Do List')"
+      [routerLink]="['to-do-list']"
+    >
+      To-Do List
+    </a>
+    <button
+      class="btn btn-light"
+      [ngClass]="{ active: selectedButton === 'Kanban Board' }"
+      (click)="selectButton('Kanban Board')"
+      [routerLink]="['kanban-board']"
+    >
+      Kanban Board
+    </button>
+    <button
+      class="btn btn-light"
+      [ngClass]="{ active: selectedButton === 'List View' }"
+      (click)="selectButton('List View')"
+      [routerLink]="['list-view']"
+    >
+      List View
+    </button>
+  </div>
+  <button
+    class="open-sidebar-button"
+    (click)="openSidebar($event)"
+    class="btn btn-primary"
+  >
+    Create
+  </button>
+</div>
