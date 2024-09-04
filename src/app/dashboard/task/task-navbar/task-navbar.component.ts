@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AddTaskSidebarService } from '../../../services/sidebar/add-task-sidebar.service';
+import { AddTaskSidebarService } from '../../../services/sidebar/TaskSidebar/add-task-sidebar.service';
 
 @Component({
   selector: 'app-task-navbar',

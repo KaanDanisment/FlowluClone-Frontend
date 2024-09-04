@@ -10,7 +10,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TaskService } from '../../../services/TaskService/task.service';
 import { AlertifyjsService } from '../../../services/AlertifyJsService/alertifyjs.service';
 import { Task } from '../../../models/task';
-import { EditTaskSidebarService } from '../../../services/sidebar/edit-task-sidebar.service';
+import { EditTaskSidebarService } from '../../../services/sidebar/TaskSidebar/edit-task-sidebar.service';
 
 @Component({
   selector: 'app-edit-task',
@@ -29,7 +29,6 @@ export class EditTaskComponent {
     private formBuilder: FormBuilder,
     private taskService: TaskService,
     private alertifyService: AlertifyjsService,
-    private changeDetector: ChangeDetectorRef,
     private elementRef: ElementRef
   ) {}
 
@@ -42,7 +41,7 @@ export class EditTaskComponent {
       description: [''],
       startDate: [''],
       endDate: [''],
-      project: [''],
+      projectId: [''],
       status: [''],
     });
   }
@@ -60,14 +59,10 @@ export class EditTaskComponent {
     this.getProjects();
   }
   getProjects() {
-    this.projectService.getProjects().subscribe(
-      (data) => {
-        this.projects = data;
-      },
-      (error) => {
-        console.log('Something went wrong', error.err);
-      }
-    );
+    this.projectService.getProjects();
+    this.projectService.projects$.subscribe((projects) => {
+      this.projects = projects;
+    });
   }
   loadTaskDetails(taskId: number) {
     this.taskService.getTaskById(taskId).subscribe((task) => {
@@ -76,12 +71,15 @@ export class EditTaskComponent {
         description: task.description,
         startDate: this.formatDate(task.startDate),
         endDate: this.formatDate(task.endDate),
-        project: task.projectId,
+        projectId: task.projectId,
         status: task.status,
       });
     });
   }
   private formatDate(date: string | Date): string {
+    if (date === null) {
+      return null;
+    }
     const d = new Date(date);
     const year = d.getFullYear();
     const month = ('0' + (d.getMonth() + 1)).slice(-2);
@@ -92,12 +90,23 @@ export class EditTaskComponent {
   updateTask() {
     if (this.taskForm.valid) {
       this.model = Object.assign({}, this.taskForm.value);
+      if (!this.model.description || this.model.description.trim() === '') {
+        this.model.description = null;
+      }
+      if (!this.model.startDate) {
+        this.model.startDate = null;
+      }
+      if (!this.model.endDate) {
+        this.model.endDate = null;
+      }
+      if (!this.model.projectId) {
+        this.model.projectId = 0;
+      }
       this.model.id = this.taskId;
-
+      console.log(this.model);
       this.taskService.updateTask(this.model).subscribe(
         () => {
           this.alertifyService.success('Task updated successfully');
-          this.changeDetector.detectChanges();
           this.closeSidebar();
           this.taskForm.reset();
         },
@@ -134,9 +143,12 @@ export class EditTaskComponent {
 
   onStartDateChange(event: Event) {
     const startDate = (event.target as HTMLInputElement).value;
+    if (!startDate) {
+      this.minEndDate = null;
+      return;
+    }
     this.minEndDate = this.calculateMinEndDate(startDate);
 
-    // Eğer bitiş tarihi, yeni başlangıç tarihinden önceyse, otomatik olarak ayarla
     const endDateInput = document.getElementById('end') as HTMLInputElement;
     if (endDateInput.value < this.minEndDate) {
       endDateInput.value = this.minEndDate;
@@ -144,8 +156,11 @@ export class EditTaskComponent {
   }
 
   calculateMinEndDate(startDate: string): string {
+    if (startDate === null) {
+      return null;
+    }
     const date = new Date(startDate);
-    date.setDate(date.getDate() + 1); // Bir gün ekle
-    return date.toISOString().split('T')[0]; // YYYY-MM-DD formatında dön
+    date.setDate(date.getDate() + 1);
+    return date.toISOString().split('T')[0];
   }
 }

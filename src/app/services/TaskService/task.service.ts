@@ -20,7 +20,7 @@ export class TaskService {
   private path = 'https://localhost:7130/api/tasks';
 
   // Görevleri Getir
-  getTasks(): void {
+  getTasks() {
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders({
       Authorization: `Bearer ${token}`,
@@ -50,11 +50,11 @@ export class TaskService {
     const headers = new HttpHeaders({
       Authorization: `Bearer ${token}`,
     });
-
+    console.log(task);
     return this.http
       .post<TaskDto>(this.path + '/createtask', task, { headers })
       .pipe(
-        tap((newTask) => {
+        tap(() => {
           this.getTasks();
         }),
         catchError(this.handleError)

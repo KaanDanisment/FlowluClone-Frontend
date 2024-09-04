@@ -16,6 +16,11 @@ import { KanbanBoardComponent } from './task/kanban-board/kanban-board.component
 import { AddTaskComponent } from './task/add-task/add-task.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { EditTaskComponent } from './task/edit-task/edit-task.component';
+import { ProjectListComponent } from './project/project-list/project-list.component';
+import { ProjectNavbarComponent } from './project/project-navbar/project-navbar.component';
+import { ProjectArchivedComponent } from './project/project-archived/project-archived.component';
+import { AddProjectComponent } from './project/add-project/add-project.component';
+import { EditProjectComponent } from './project/edit-project/edit-project.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +36,11 @@ import { EditTaskComponent } from './task/edit-task/edit-task.component';
     KanbanBoardComponent,
     AddTaskComponent,
     EditTaskComponent,
+    ProjectListComponent,
+    ProjectNavbarComponent,
+    ProjectArchivedComponent,
+    AddProjectComponent,
+    EditProjectComponent,
   ],
   imports: [
     CommonModule,

@@ -1,7 +1,7 @@
 <div class="d-flex justify-content-between">
   <h3>Task</h3>
   <div class="btn-group">
-    <a
+    <button
       class="btn btn-light"
       type="button"
       [ngClass]="{ active: selectedButton === 'To-Do List' }"
@@ -9,7 +9,7 @@
       [routerLink]="['to-do-list']"
     >
       To-Do List
-    </a>
+    </button>
     <button
       class="btn btn-light"
       [ngClass]="{ active: selectedButton === 'Kanban Board' }"

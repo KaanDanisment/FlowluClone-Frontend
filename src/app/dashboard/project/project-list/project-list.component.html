@@ -1,0 +1,66 @@
+<div class="container mt-4">
+  <div *ngIf="projects.length != 0; else noProject">
+    <div *ngIf="selectedProject" class="mb-3">
+      <button
+        class="open-sidebar-button btn btn-secondary me-2"
+        (click)="editProject()"
+      >
+        Edit
+      </button>
+      <button class="btn btn-secondary me-2" (click)="deleteProject()">
+        Delete
+      </button>
+      <button class="btn btn-secondary" (click)="markComplete()">
+        Complete
+      </button>
+    </div>
+
+    <div class="table-container" (mousemove)="onMouseMove($event)">
+      <table>
+        <thead>
+          <tr>
+            <th style="padding: 8px 10px"></th>
+            <th>Project</th>
+            <th>Customer</th>
+            <th>Description</th>
+            <th>Status</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>Income</th>
+            <th>Expenses</th>
+            <th>Revenue</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let project of projects">
+            <td style="padding: 8px 10px">
+              <input
+                class="checkbox"
+                type="checkbox"
+                [checked]="selectedProject === project"
+                (change)="selectProject(project)"
+              />
+            </td>
+            <td>{{ project.name }}</td>
+            <td>{{ project.customerName }}</td>
+            <td>{{ project.description }}</td>
+            <td>{{ project.status }}</td>
+            <td>{{ project.startDate | date }}</td>
+            <td>{{ project.endDate | date }}</td>
+            <td>{{ project.income | currency : "USD" : true }}</td>
+            <td>{{ project.expenses | currency : "USD" : true }}</td>
+            <td *ngIf="project.income; else noIncome">
+              {{ project.income - project.expenses | currency : "USD" : true }}
+            </td>
+            <ng-template #noIncome>
+              <td></td>
+            </ng-template>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <ng-template #noProject>
+    <p>No project to display</p>
+  </ng-template>
+</div>

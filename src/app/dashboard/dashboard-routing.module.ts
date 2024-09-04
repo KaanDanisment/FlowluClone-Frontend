@@ -6,6 +6,9 @@ import { TaskListViewComponent } from './task/task-list-view/task-list-view.comp
 import { ToDoListComponent } from './task/to-do-list/to-do-list.component';
 import { KanbanBoardComponent } from './task/kanban-board/kanban-board.component';
 import { ProjectComponent } from './project/project.component';
+import { ProjectListComponent } from './project/project-list/project-list.component';
+import { ProjectArchivedComponent } from './project/project-archived/project-archived.component';
+import { CustomerComponent } from './customer/customer.component';
 
 const routes: Routes = [
   {
@@ -16,12 +19,22 @@ const routes: Routes = [
         path: 'tasks',
         component: TaskComponent,
         children: [
+          { path: '', redirectTo: 'kanban-board', pathMatch: 'full' },
           { path: 'list-view', component: TaskListViewComponent },
           { path: 'to-do-list', component: ToDoListComponent },
           { path: 'kanban-board', component: KanbanBoardComponent },
         ],
       },
-      { path: 'projects', component: ProjectComponent },
+      {
+        path: 'projects',
+        component: ProjectComponent,
+        children: [
+          { path: '', redirectTo: 'list', pathMatch: 'full' },
+          { path: 'list', component: ProjectListComponent },
+          { path: 'archived', component: ProjectArchivedComponent },
+        ],
+      },
+      { path: 'customers', component: CustomerComponent },
     ],
   },
 ];

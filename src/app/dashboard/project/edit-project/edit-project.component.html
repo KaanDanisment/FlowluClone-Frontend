@@ -1,30 +1,22 @@
-<div class="edit-task-sidebar" [ngClass]="{ open: isOpen }">
+<div class="edit-project-sidebar" [ngClass]="{ open: isOpen }">
   <h2>Edit Task</h2>
-  <form [formGroup]="taskForm" (ngSubmit)="updateTask()">
+  <form [formGroup]="projectForm" (ngSubmit)="updateProject()">
     <div>
-      <label for="task">Task Name:</label>
-      <input
-        type="text"
-        id="task"
-        name="task"
-        formControlName="name"
-        placeholder="Görev Adını Girin"
-      />
+      <label for="project">Project Name</label>
+      <input type="text" id="project" name="project" formControlName="name" />
     </div>
     <div>
-      <label for="description">Açıklama:</label>
+      <label for="description">Description</label>
       <textarea
         id="description"
         name="description"
         formControlName="description"
-        placeholder="Açıklama"
         (input)="autoGrow($event)"
       ></textarea>
       <div>
         <label for="status">Durum:</label>
         <select formControlName="status" id="status">
-          <option value="to-do">To Do</option>
-          <option value="in-progress">In Progress</option>
+          <option value="active">Active</option>
           <option value="completed">Completed</option>
         </select>
       </div>
@@ -50,13 +42,36 @@
             [min]="minEndDate"
           />
         </div>
+        <div>
+          <label>Income</label>
+          <label style="margin-left: 320px">Expenses</label>
+        </div>
+        <div class="d-flex">
+          <input
+            class="me-3"
+            type="number"
+            id="income"
+            name="income"
+            formControlName="income"
+          />
+          <input
+            type="number"
+            id="expenses"
+            name="expenses"
+            formControlName="expenses"
+          />
+        </div>
       </div>
       <div>
-        <label for="project">Select Project:</label>
-        <select class="form-control" formControlName="projectId" id="project">
-          <option value="">-- Select Project --</option>
-          <option *ngFor="let project of projects" [value]="project.id">
-            {{ project.name }} - {{ project.customerName }}
+        <label for="project">Select Customer</label>
+        <select
+          class="form-control"
+          formControlName="customerId"
+          id="customerId"
+        >
+          <option value="">-- Select Customer --</option>
+          <option *ngFor="let customer of customers" [value]="customer.id">
+            {{ customer.name }}
           </option>
         </select>
       </div>
@@ -65,7 +80,7 @@
       <button
         type="submit"
         class="btn btn-primary me-2"
-        [disabled]="taskForm.invalid"
+        [disabled]="projectForm.invalid"
       >
         Save
       </button>

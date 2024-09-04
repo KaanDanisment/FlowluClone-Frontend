@@ -14,6 +14,9 @@ export class TaskComponent implements OnInit {
 
   ngOnInit() {
     const lastSelectedView = localStorage.getItem('selectedButton');
+    if (!lastSelectedView) {
+      this.router.navigate(['dashboard/tasks/kanban-board']);
+    }
     if (lastSelectedView === 'List View') {
       this.router.navigate(['dashboard/tasks/list-view']);
     } else if (lastSelectedView === 'To-Do List') {

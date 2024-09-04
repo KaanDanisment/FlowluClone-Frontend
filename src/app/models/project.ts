@@ -4,11 +4,10 @@ export class Project {
   userId: number;
   description: string;
   startDate: Date;
-  endeDate: Date;
+  endDate: Date;
   status: string;
   createdAt: Date;
   customerId: number;
   income: number;
   expenses: number;
-  revenue: number;
 }

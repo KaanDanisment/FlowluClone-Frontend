@@ -10,7 +10,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Task } from '../../../models/task';
 import { TaskService } from '../../../services/TaskService/task.service';
 import { AlertifyjsService } from '../../../services/AlertifyJsService/alertifyjs.service';
-import { AddTaskSidebarService } from '../../../services/sidebar/add-task-sidebar.service';
+import { AddTaskSidebarService } from '../../../services/sidebar/TaskSidebar/add-task-sidebar.service';
 
 @Component({
   selector: 'app-add-task',
@@ -41,7 +41,7 @@ export class AddTaskComponent {
       description: [''],
       startDate: [''],
       endDate: [''],
-      project: [''],
+      projectId: [''],
     });
   }
   ngOnInit() {
@@ -52,14 +52,10 @@ export class AddTaskComponent {
     this.getProjects();
   }
   getProjects() {
-    this.projectService.getProjects().subscribe(
-      (data) => {
-        this.projects = data;
-      },
-      (error) => {
-        console.log('Something went wrong', error.err);
-      }
-    );
+    this.projectService.getProjects();
+    this.projectService.projects$.subscribe((projects) => {
+      this.projects = projects;
+    });
   }
 
   saveTask() {
@@ -79,10 +75,9 @@ export class AddTaskComponent {
       this.model.projectId = 0;
     }
     this.model.status = 'to-do';
-    console.log(this.model);
+
     this.taskService.addTask(this.model).subscribe(
-      (response) => {
-        this.changeDetector.detectChanges();
+      () => {
         this.alertifyService.success('Task added suucessfully');
       },
       (error) => {

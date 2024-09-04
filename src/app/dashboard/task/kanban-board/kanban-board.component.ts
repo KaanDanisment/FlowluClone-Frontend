@@ -6,7 +6,7 @@ import {
   moveItemInArray,
   transferArrayItem,
 } from '@angular/cdk/drag-drop';
-import { EditTaskSidebarService } from '../../../services/sidebar/edit-task-sidebar.service';
+import { EditTaskSidebarService } from '../../../services/sidebar/TaskSidebar/edit-task-sidebar.service';
 
 @Component({
   selector: 'app-kanban-board',

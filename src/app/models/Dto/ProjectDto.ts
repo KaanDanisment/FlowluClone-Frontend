@@ -4,12 +4,11 @@ export class ProjectDto {
   userId: number;
   description: string;
   startDate: Date;
-  endeDate: Date;
+  endDate: Date;
   status: string;
   createdAt: Date;
   customerId: number;
   customerName: string;
   income: number;
   expenses: number;
-  revenue: number;
 }

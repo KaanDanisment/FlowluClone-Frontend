@@ -1,0 +1,81 @@
+<div class="add-project-sidebar" [ngClass]="{ open: isOpen }">
+  <button class="close-btn" (click)="closeSidebar()">Kapat</button>
+  <h2>Create Project</h2>
+  <form [formGroup]="projectForm" (ngSubmit)="saveProject()">
+    <div>
+      <label for="task">Project Name *</label>
+      <input type="text" id="task" name="task" formControlName="name" />
+    </div>
+    <div>
+      <label for="description">Description</label>
+      <textarea
+        id="description"
+        name="description"
+        formControlName="description"
+        (input)="autoGrow($event)"
+      ></textarea>
+      <div>
+        <div>
+          <label for="start">Start Date</label>
+          <label style="margin-left: 320px" for="end">End Date</label>
+        </div>
+        <div class="d-flex">
+          <input
+            class="me-3"
+            type="date"
+            id="start"
+            name="start"
+            formControlName="startDate"
+            (change)="onStartDateChange($event)"
+          />
+          <input
+            type="date"
+            id="end"
+            name="end"
+            formControlName="endDate"
+            [min]="minEndDate"
+          />
+        </div>
+        <div>
+          <label>Income</label>
+          <label style="margin-left: 335px">Expenses</label>
+        </div>
+        <div class="d-flex">
+          <input
+            class="me-3"
+            type="number"
+            id="income"
+            name="income"
+            formControlName="income"
+          />
+          <input
+            type="number"
+            id="expenses"
+            name="expenses"
+            formControlName="expenses"
+          />
+        </div>
+        <div>
+          <label for="customer">Select Customer:</label>
+          <select
+            class="form-control"
+            formControlName="customerId"
+            id="customerId"
+          >
+            <option value="">-- Select Customer --</option>
+            <option *ngFor="let customer of customers" [value]="customer.id">
+              {{ customer.name }}
+            </option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <button
+      type="submit"
+      class="btn btn-primary mt-3"
+      [disabled]="projectForm.invalid"
+    >
+      Save
+    </button>
+  </form>
+</div>

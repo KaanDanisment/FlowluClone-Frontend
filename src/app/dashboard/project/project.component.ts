@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-project',
@@ -6,20 +7,17 @@ import { Component } from '@angular/core';
   styleUrl: './project.component.css',
 })
 export class ProjectComponent {
-  onMouseMove(event: MouseEvent): void {
-    const tableContainer = event.currentTarget as HTMLElement;
-    const boundingRect = tableContainer.getBoundingClientRect();
-    const mouseX = event.clientX - boundingRect.left;
+  constructor(private router: Router) {}
 
-    const scrollThreshold = 100; // Scroll başlama mesafesi
-    const scrollAmount = 10; // Scroll miktarı
-
-    if (mouseX < scrollThreshold) {
-      // Sol tarafa kaydır
-      tableContainer.scrollLeft -= scrollAmount;
-    } else if (mouseX > boundingRect.width - scrollThreshold) {
-      // Sağ tarafa kaydır
-      tableContainer.scrollLeft += scrollAmount;
+  ngOnInit() {
+    const lastSelectedView = localStorage.getItem('selectedProjectButton');
+    if (!lastSelectedView) {
+      this.router.navigate(['dashboard/projects/list']);
+    }
+    if (lastSelectedView === 'List') {
+      this.router.navigate(['dashboard/projects/list']);
+    } else if (lastSelectedView === 'Archived') {
+      this.router.navigate(['dashboard/projects/archived']);
     }
   }
 }

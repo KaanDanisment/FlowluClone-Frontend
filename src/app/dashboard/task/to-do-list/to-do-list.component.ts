@@ -2,7 +2,7 @@ import { ChangeDetectorRef, Component } from '@angular/core';
 import { TaskService } from '../../../services/TaskService/task.service';
 import { TaskDto } from '../../../models/Dto/TaskDto';
 import { Task } from '../../../models/task';
-import { EditTaskSidebarService } from '../../../services/sidebar/edit-task-sidebar.service';
+import { EditTaskSidebarService } from '../../../services/sidebar/TaskSidebar/edit-task-sidebar.service';
 
 @Component({
   selector: 'app-to-do-list',
@@ -27,15 +27,10 @@ export class ToDoListComponent {
     this.taskService.getTasks();
   }
 
-  deleteTask(taskId: number): void {
-    this.taskService.deleteTask(taskId).subscribe(
-      () => {
-        this.changeDetector.detectChanges();
-      },
-      (error) => {
-        console.error('Task could not be deleted', error);
-      }
-    );
+  deleteTask(taskId: number) {
+    this.taskService.deleteTask(taskId).subscribe((error) => {
+      console.error('Task could not be deleted', error);
+    });
   }
   editTask(taskId: number) {
     this.editTaskSidebarService.openSidebar(taskId);
