@@ -1,5 +1,15 @@
 <div class="container mt-4">
-  <div *ngIf="projects.length != 0; else noProject">
+  <div class="mb-3">
+    <input
+      type="text"
+      class="form-control"
+      placeholder="Search tasks..."
+      [(ngModel)]="searchTerm"
+      (input)="filterProject()"
+      style="width: 375px"
+    />
+  </div>
+  <div *ngIf="filteredProject.length != 0; else noProject">
     <div *ngIf="selectedProject" class="mb-3">
       <button
         class="open-sidebar-button btn btn-secondary me-2"
@@ -32,7 +42,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let project of projects">
+          <tr *ngFor="let project of filteredProject">
             <td style="padding: 8px 10px">
               <input
                 class="checkbox"
@@ -41,12 +51,14 @@
                 (change)="selectProject(project)"
               />
             </td>
-            <td>{{ project.name }}</td>
+            <td style="cursor: pointer" (click)="openTaskSidebar(project)">
+              {{ project.name }}
+            </td>
             <td>{{ project.customerName }}</td>
             <td>{{ project.description }}</td>
             <td>{{ project.status }}</td>
-            <td>{{ project.startDate | date }}</td>
-            <td>{{ project.endDate | date }}</td>
+            <td>{{ project.startDate | date : "dd/MM/yyyy" }}</td>
+            <td>{{ project.endDate | date : "dd/MM/yyyy" }}</td>
             <td>{{ project.income | currency : "USD" : true }}</td>
             <td>{{ project.expenses | currency : "USD" : true }}</td>
             <td *ngIf="project.income; else noIncome">

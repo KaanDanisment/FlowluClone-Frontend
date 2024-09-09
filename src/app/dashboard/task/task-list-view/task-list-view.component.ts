@@ -10,22 +10,22 @@ import { TaskDto } from '../../../models/Dto/TaskDto';
 export class TaskListViewComponent implements OnInit {
   tasks: TaskDto[] = [];
   isStartDateValid: boolean = false;
+  searchTerm: string = '';
+  filteredTasks: TaskDto[] = [];
 
   constructor(private taskService: TaskService) {}
 
   ngOnInit() {
+    this.taskService.getTasks();
     this.taskService.tasks$.subscribe((tasks) => {
       this.tasks = tasks;
+      this.filterTasks();
     });
-
-    this.taskService.getTasks(); // İlk yükleme için görevleri getir
   }
-
-  checkStartDate(task: TaskDto): boolean {
-    const defaultDateString = '0001-01-01T00:00:00';
-    const taskStartDate = new Date(task.startDate);
-    const defaultDate = new Date(defaultDateString);
-
-    return taskStartDate.getTime() !== defaultDate.getTime();
+  filterTasks(): void {
+    const term = this.searchTerm.toLowerCase();
+    this.filteredTasks = this.tasks.filter((task) =>
+      task.name.toLowerCase().includes(term)
+    );
   }
 }

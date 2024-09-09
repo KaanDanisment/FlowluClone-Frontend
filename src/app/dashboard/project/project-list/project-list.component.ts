@@ -3,6 +3,7 @@ import { ProjectService } from '../../../services/ProjectService/project.service
 import { ProjectDto } from '../../../models/Dto/ProjectDto';
 import { Project } from '../../../models/project';
 import { ProjectEditSidebarService } from '../../../services/sidebar/ProjectSidebar/project-edit-sidebar.service';
+import { GetTasksSidebarService } from '../../../services/sidebar/TaskSidebar/get-tasks-sidebar.service';
 
 @Component({
   selector: 'app-project-list',
@@ -12,6 +13,9 @@ import { ProjectEditSidebarService } from '../../../services/sidebar/ProjectSide
 export class ProjectListComponent {
   projects: ProjectDto[] = [];
   selectedProject: ProjectDto = null;
+
+  searchTerm: string = '';
+  filteredProject: ProjectDto[] = [];
   selectProject(project: ProjectDto) {
     if (this.selectedProject === project) {
       this.selectedProject = null;
@@ -21,23 +25,34 @@ export class ProjectListComponent {
   }
   constructor(
     private projectService: ProjectService,
-    private editProjectSidebarService: ProjectEditSidebarService
+    private editProjectSidebarService: ProjectEditSidebarService,
+    private getTasksSidebarService: GetTasksSidebarService
   ) {}
 
   ngOnInit() {
     this.projectService.getProjects();
     this.projectService.projects$.subscribe((projects) => {
       this.projects = projects.filter((p) => p.status === 'active');
+      this.filterProject();
     });
   }
 
+  filterProject(): void {
+    const term = this.searchTerm.toLowerCase();
+    this.filteredProject = this.projects.filter((project) =>
+      project.name.toLowerCase().includes(term)
+    );
+  }
+
+  openTaskSidebar(project: ProjectDto) {
+    this.getTasksSidebarService.openSidebar(project.id);
+  }
   editProject() {
     this.editProjectSidebarService.openSidebar(this.selectedProject.id);
     this.selectedProject = null;
   }
 
   deleteProject() {
-    console.log(this.selectedProject);
     this.projectService
       .deleteProject(this.selectedProject.id)
       .subscribe((error) => {

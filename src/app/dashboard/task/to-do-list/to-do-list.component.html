@@ -1,9 +1,23 @@
 <div class="container mt-4">
-  <div *ngIf="tasks.length != 0; else noTasks">
+  <div class="mb-3">
+    <input
+      type="text"
+      class="form-control"
+      placeholder="Search tasks..."
+      [(ngModel)]="searchTerm"
+      (input)="filterTasks()"
+      style="width: 375px"
+    />
+  </div>
+  <div *ngIf="filteredTasks.length != 0; else noTasks">
     <ul class="list-group">
       <li
         class="list-group-item d-flex align-items-center"
-        *ngFor="let task of tasks; let i = index; trackBy: trackByTaskId"
+        *ngFor="
+          let task of filteredTasks;
+          let i = index;
+          trackBy: trackByTaskId
+        "
       >
         <div>
           <input

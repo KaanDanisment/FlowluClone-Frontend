@@ -5,8 +5,6 @@ export class TaskDto {
   status: string;
   projectId: number;
   projectName: string;
-  remainingDays: number;
-  duration: number;
   startDate: Date;
   endDate: Date;
   userId: number;

@@ -1,25 +1,44 @@
 <div class="sidebar text-white">
   <ul class="nav flex-column">
     <li class="nav-item mb-2">
-      <a routerLink="/dashboard" class="nav-link text-white">Home</a>
-    </li>
-    <li class="nav-item mb-2">
-      <a [routerLink]="['/dashboard/projects']" class="nav-link text-white"
-        >Projects</a
+      <a
+        [routerLink]="['/dashboard/home']"
+        routerLinkActive="active-link"
+        class="nav-link text-white d-flex flex-column align-items-center"
       >
+        <i class="fa-solid fa-house icon-large"></i>
+        <span class="nav-text">Home</span>
+      </a>
     </li>
     <li class="nav-item mb-2">
-      <a [routerLink]="['/dashboard/tasks']" class="nav-link text-white"
-        >Tasks</a
+      <a
+        [routerLink]="['/dashboard/projects']"
+        routerLinkActive="active-link"
+        class="nav-link text-white d-flex flex-column align-items-center"
       >
+        <i class="fa-solid fa-diagram-project icon-large"></i>
+        <span class="nav-text">Projects</span>
+      </a>
     </li>
     <li class="nav-item mb-2">
-      <a [routerLink]="['/dashboard/customers']" class="nav-link text-white"
-        >Customers</a
+      <a
+        [routerLink]="['/dashboard/tasks']"
+        routerLinkActive="active-link"
+        class="nav-link text-white d-flex flex-column align-items-center"
       >
+        <i class="fa-solid fa-list-check icon-large"></i>
+        <span class="nav-text">Tasks</span>
+      </a>
     </li>
     <li class="nav-item mb-2">
-      <a routerLink="/settings" class="nav-link text-white">Settings</a>
+      <a
+        [routerLink]="['/dashboard/customers']"
+        routerLinkActive="active-link"
+        class="nav-link text-white d-flex flex-column align-items-center"
+      >
+        <i class="fa-brands fa-intercom icon-large"></i>
+        <span class="nav-text">Customers</span>
+      </a>
     </li>
   </ul>
 </div>

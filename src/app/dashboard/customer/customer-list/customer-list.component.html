@@ -1,0 +1,61 @@
+<div class="container">
+  <div *ngIf="customers.length != 0; else noCustomer">
+    <div class="mb-3">
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Search tasks..."
+        [(ngModel)]="searchTerm"
+        (input)="filterCustomer()"
+        style="width: 375px"
+      />
+    </div>
+    <div *ngIf="selectedCustomer" class="mb-3">
+      <button
+        class="open-sidebar-button btn btn-secondary me-2"
+        (click)="deleteCustomer()"
+      >
+        Delete
+      </button>
+    </div>
+
+    <div class="table">
+      <table>
+        <thead>
+          <tr>
+            <th style="padding: 8px 10px"></th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Contact Name</th>
+            <th>Contact Email</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let customer of filteredCustomers">
+            <td style="padding: 8px 10px">
+              <input
+                class="checkbox"
+                type="checkbox"
+                [checked]="selectedCustomer === customer"
+                (change)="selectCustomer(customer)"
+              />
+            </td>
+            <td
+              class="customer-name"
+              (click)="openCustomerSidebar(customer)"
+              style="cursor: pointer"
+            >
+              {{ customer.name }}
+            </td>
+            <td>{{ customer.email }}</td>
+            <td>{{ customer.contactName }}</td>
+            <td>{{ customer.contactEmail }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <ng-template #noCustomer>
+    <p>No customer to display</p>
+  </ng-template>
+</div>

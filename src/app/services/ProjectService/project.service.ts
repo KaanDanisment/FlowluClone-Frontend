@@ -15,6 +15,9 @@ export class ProjectService {
   private projectsSubject = new BehaviorSubject<ProjectDto[]>([]);
   projects$ = this.projectsSubject.asObservable();
 
+  private projectsByCustomerIdSubject = new BehaviorSubject<ProjectDto[]>([]);
+  projectByCustomerId$ = this.projectsByCustomerIdSubject.asObservable();
+
   constructor(private http: HttpClient) {}
 
   path = 'https://localhost:7130/api/projects';
@@ -28,6 +31,21 @@ export class ProjectService {
       .get<ProjectDto[]>(this.path + '/getprojects', { headers })
       .pipe(
         tap((projects) => this.projectsSubject.next(projects)),
+        catchError(this.handleError)
+      )
+      .subscribe();
+  }
+  getProjectsByCustomerId(customerId: number) {
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+    });
+    this.http
+      .get<ProjectDto[]>(this.path + '/getprojectbycustomerid/' + customerId, {
+        headers,
+      })
+      .pipe(
+        tap((projects) => this.projectsByCustomerIdSubject.next(projects)),
         catchError(this.handleError)
       )
       .subscribe();

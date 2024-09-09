@@ -44,7 +44,16 @@ export class TaskService {
       headers,
     });
   }
-
+  getTasksByProjectId(projectId: number): Observable<TaskDto[]> {
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+    });
+    return this.http.get<TaskDto[]>(
+      this.path + '/gettasksbyprojectid/' + projectId,
+      { headers }
+    );
+  }
   addTask(task: Task): Observable<TaskDto> {
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders({

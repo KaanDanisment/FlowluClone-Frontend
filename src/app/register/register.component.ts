@@ -36,7 +36,7 @@ export class RegisterComponent {
     this.model = Object.assign({}, this.registerForm.value);
     this.authService.register(this.model).subscribe({
       next: () => {
-        this.router.navigate(['/home']);
+        this.router.navigate(['/login']);
       },
       error: (err: HttpErrorResponse) => {
         console.log(err.error);

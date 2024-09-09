@@ -9,12 +9,16 @@ import { ProjectComponent } from './project/project.component';
 import { ProjectListComponent } from './project/project-list/project-list.component';
 import { ProjectArchivedComponent } from './project/project-archived/project-archived.component';
 import { CustomerComponent } from './customer/customer.component';
+import { CustomerListComponent } from './customer/customer-list/customer-list.component';
+import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
   {
     path: '',
     component: DashboardComponent,
     children: [
+      { path: '', redirectTo: 'home', pathMatch: 'full' },
+      { path: 'home', component: HomeComponent },
       {
         path: 'tasks',
         component: TaskComponent,
@@ -34,7 +38,14 @@ const routes: Routes = [
           { path: 'archived', component: ProjectArchivedComponent },
         ],
       },
-      { path: 'customers', component: CustomerComponent },
+      {
+        path: 'customers',
+        component: CustomerComponent,
+        children: [
+          { path: '', redirectTo: 'list', pathMatch: 'full' },
+          { path: 'list', component: CustomerListComponent },
+        ],
+      },
     ],
   },
 ];

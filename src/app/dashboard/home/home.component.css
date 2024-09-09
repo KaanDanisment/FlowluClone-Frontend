@@ -1,0 +1,102 @@
+.row {
+  background-color: #f8f9fd;
+}
+/* Ortak stil */
+.list-wrapper {
+  width: 100%;
+  background-color: #fff;
+  border: 0, 5px solid #ddd;
+  border-radius: 4px;
+  padding: 20px;
+}
+
+.list-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.list-content {
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.list-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background-color: white;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.item-info h4 {
+  margin: 0;
+  font-size: 16px;
+}
+
+.item-info p {
+  margin: 0;
+  color: #888;
+  font-size: 12px;
+}
+
+.item-status .status-label {
+  font-size: 12px;
+  padding: 2px 8px;
+  border-radius: 3px;
+  background-color: #28a745;
+  color: white;
+}
+.table-container {
+  overflow-x: auto;
+  white-space: nowrap;
+  position: relative;
+  max-width: 100%;
+}
+
+.table-container::-webkit-scrollbar {
+  height: 8px; /* Kaydırma çubuğu yüksekliği */
+}
+
+.table-container::-webkit-scrollbar-thumb {
+  background-color: #b9b4b4; /* Kaydırma çubuğunun rengi */
+  border-radius: 4px; /* Kaydırma çubuğu köşelerini yuvarlama */
+}
+
+.table-container::-webkit-scrollbar-thumb:hover {
+  background-color: #8a8484; /* Kaydırma çubuğu üzerine gelindiğinde renk değişimi */
+}
+
+.table-container::-webkit-scrollbar-track {
+  background-color: #f1f1f1; /* Kaydırma çubuğunun arka plan rengi */
+}
+table {
+  width: max-content;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  padding: 8px 70px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+th {
+  background-color: #f4f4f4;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  font-family: "Arial", sans-serif; /* Yazı fontunu belirler */
+  font-size: 14px; /* Yazı boyutunu belirler */
+  font-weight: bold; /* Yazı ağırlığını belirler */
+  color: #333; /* Yazı rengini belirler */
+}
+
+tr:hover {
+  background-color: #f1f1f1;
+}

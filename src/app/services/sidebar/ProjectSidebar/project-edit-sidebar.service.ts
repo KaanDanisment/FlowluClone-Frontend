@@ -8,7 +8,7 @@ export class ProjectEditSidebarService {
   private sidebarOpen = new BehaviorSubject<boolean>(false);
   sidebarOpen$ = this.sidebarOpen.asObservable();
   private projectIdSubject = new BehaviorSubject<number | null>(null);
-  taskId$ = this.projectIdSubject.asObservable();
+  projectId$ = this.projectIdSubject.asObservable();
 
   openSidebar(taskId: number) {
     this.projectIdSubject.next(taskId);

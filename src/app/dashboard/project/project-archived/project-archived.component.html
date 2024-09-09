@@ -1,4 +1,14 @@
 <div class="container mt-4">
+  <div class="mb-3">
+    <input
+      type="text"
+      class="form-control"
+      placeholder="Search tasks..."
+      [(ngModel)]="searchTerm"
+      (input)="filterProject()"
+      style="width: 375px"
+    />
+  </div>
   <div *ngIf="projects.length != 0; else noProject">
     <div *ngIf="selectedProject" class="mb-3">
       <button class="btn btn-secondary me-2" (click)="deleteProject()">
@@ -23,7 +33,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let project of projects">
+          <tr *ngFor="let project of filteredProject">
             <td style="padding: 8px 10px">
               <input
                 class="checkbox"

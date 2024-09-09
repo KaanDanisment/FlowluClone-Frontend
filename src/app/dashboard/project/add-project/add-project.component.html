@@ -1,5 +1,4 @@
 <div class="add-project-sidebar" [ngClass]="{ open: isOpen }">
-  <button class="close-btn" (click)="closeSidebar()">Kapat</button>
   <h2>Create Project</h2>
   <form [formGroup]="projectForm" (ngSubmit)="saveProject()">
     <div>
@@ -70,12 +69,17 @@
         </div>
       </div>
     </div>
-    <button
-      type="submit"
-      class="btn btn-primary mt-3"
-      [disabled]="projectForm.invalid"
-    >
-      Save
-    </button>
+    <div class="mt-3">
+      <button
+        type="submit"
+        class="btn btn-primary me-2"
+        [disabled]="projectForm.invalid"
+      >
+        Save
+      </button>
+      <button type="button" class="btn btn-secondary" (click)="closeSidebar()">
+        Cancel
+      </button>
+    </div>
   </form>
 </div>

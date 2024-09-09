@@ -18,14 +18,23 @@ export class ProjectArchivedComponent {
     }
   }
 
+  searchTerm: string = '';
+  filteredProject: ProjectDto[] = [];
   constructor(private projectService: ProjectService) {}
   ngOnInit() {
     this.projectService.getProjects();
     this.projectService.projects$.subscribe((projects) => {
       this.projects = projects.filter((p) => p.status === 'completed');
+      this.filterProject();
     });
   }
 
+  filterProject(): void {
+    const term = this.searchTerm.toLowerCase();
+    this.filteredProject = this.projects.filter((project) =>
+      project.name.toLowerCase().includes(term)
+    );
+  }
   deleteProject() {
     this.projectService.deleteProject(this.selectedProject.id).subscribe();
     this.selectedProject = null;

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { TaskDto } from '../../../models/Dto/TaskDto';
 import { TaskService } from '../../../services/TaskService/task.service';
 import {
@@ -15,6 +15,8 @@ import { EditTaskSidebarService } from '../../../services/sidebar/TaskSidebar/ed
 })
 export class KanbanBoardComponent implements OnInit {
   tasks: TaskDto[] = [];
+  filteredTasks: TaskDto[] = [];
+  searchTerm: string = '';
   columns = [
     { title: 'To Do', status: 'to-do', id: 'todoList' },
     { title: 'In Progress', status: 'in-progress', id: 'inProgressList' },
@@ -22,22 +24,32 @@ export class KanbanBoardComponent implements OnInit {
   ];
   connectedLists: string[] = [];
   openMenuIndex: number | null = null;
+
   constructor(
     private taskService: TaskService,
     private editTaskSidebarService: EditTaskSidebarService
   ) {}
 
   ngOnInit() {
+    this.taskService.getTasks();
     this.taskService.tasks$.subscribe((tasks) => {
       this.tasks = tasks;
+      this.filteredTasks = tasks;
     });
 
-    this.taskService.getTasks(); // İlk yükleme için görevleri getir
     this.connectedLists = this.columns.map((column) => column.id);
   }
 
   getTasksByStatus(status: string): TaskDto[] {
-    return this.tasks.filter((task) => task.status === status);
+    return this.filteredTasks.filter((task) => task.status === status);
+  }
+  onSearchChange(): void {
+    const term = this.searchTerm.toLowerCase();
+    this.filteredTasks = this.tasks.filter(
+      (task) =>
+        task.name.toLowerCase().includes(term) ||
+        (task.projectName && task.projectName.toLowerCase().includes(term))
+    );
   }
   deleteTask(taskId: number): void {
     this.taskService.deleteTask(taskId).subscribe(
@@ -97,6 +109,15 @@ export class KanbanBoardComponent implements OnInit {
       this.openMenuIndex = null;
     } else {
       this.openMenuIndex = taskId;
+    }
+  }
+  @HostListener('document:click', ['$event'])
+  closeMenu(event: Event): void {
+    const target = event.target as HTMLElement;
+
+    // Eğer tıklanan element menü içinde değilse menüyü kapat
+    if (!target.closest('.task-options')) {
+      this.openMenuIndex = null;
     }
   }
 }

@@ -14,13 +14,20 @@ import { TaskListViewComponent } from './task/task-list-view/task-list-view.comp
 import { ToDoListComponent } from './task/to-do-list/to-do-list.component';
 import { KanbanBoardComponent } from './task/kanban-board/kanban-board.component';
 import { AddTaskComponent } from './task/add-task/add-task.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EditTaskComponent } from './task/edit-task/edit-task.component';
 import { ProjectListComponent } from './project/project-list/project-list.component';
 import { ProjectNavbarComponent } from './project/project-navbar/project-navbar.component';
 import { ProjectArchivedComponent } from './project/project-archived/project-archived.component';
 import { AddProjectComponent } from './project/add-project/add-project.component';
 import { EditProjectComponent } from './project/edit-project/edit-project.component';
+import { CustomerListComponent } from './customer/customer-list/customer-list.component';
+import { AddCustomerComponent } from './customer/add-customer/add-customer.component';
+import { CustomerNavbarComponent } from './customer/customer-navbar/customer-navbar.component';
+import { GetCustomerComponent } from './customer/get-customer/get-customer.component';
+import { GetCustomerProjectsComponent } from './customer/get-customer/get-customer-projects/get-customer-projects.component';
+import { GetCustomerTasksComponent } from './customer/get-customer/get-customer-tasks/get-customer-tasks.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
@@ -41,12 +48,20 @@ import { EditProjectComponent } from './project/edit-project/edit-project.compon
     ProjectArchivedComponent,
     AddProjectComponent,
     EditProjectComponent,
+    CustomerListComponent,
+    AddCustomerComponent,
+    CustomerNavbarComponent,
+    GetCustomerComponent,
+    GetCustomerProjectsComponent,
+    GetCustomerTasksComponent,
+    HomeComponent,
   ],
   imports: [
     CommonModule,
     DashboardRoutingModule,
     DragDropModule,
     ReactiveFormsModule,
+    FormsModule,
   ],
 })
 export class DashboardModule {}

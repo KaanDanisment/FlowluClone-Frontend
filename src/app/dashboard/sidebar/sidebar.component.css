@@ -4,6 +4,33 @@
   position: fixed;
   top: 56px;
   left: 0;
-  background-color: #343a40;
+  background-color: #373752;
   padding-top: 20px;
+}
+.icon-large {
+  font-size: 24px; /* Simgelerin büyük görünmesini sağlar */
+}
+
+.nav-text {
+  font-size: 14px; /* Yazı simgeden daha küçük */
+  margin-top: 5px; /* Simge ile yazı arasında biraz boşluk bırakır */
+  text-align: center; /* Yazıyı ortalar */
+}
+
+.nav-link {
+  display: flex;
+  flex-direction: column; /* Simgeyi yazının üstüne yerleştirir */
+  align-items: center; /* Simge ve yazıyı ortalar */
+  text-align: center; /* Bağlantıyı ortalar */
+  opacity: 0.5; /* Varsayılan olarak soluk */
+  transition: opacity 0.3s, color 0.3s; /* Geçiş efektleri */
+}
+
+.nav-link:hover {
+  opacity: 0.75; /* Hover durumu için biraz daha görünür */
+}
+
+.active-link {
+  opacity: 1; /* Aktif bağlantı için tam görünürlük */
+  color: #ffffff; /* Aktif öğenin rengi */
 }

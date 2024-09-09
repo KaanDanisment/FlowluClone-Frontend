@@ -1,0 +1,33 @@
+<div class="get-customer-sidebar" [ngClass]="{ open: isOpen }">
+  <form [formGroup]="customerForm" (ngSubmit)="updateCustomer()">
+    <input class="name" type="text" formControlName="name" />
+    <label class="text-muted" style="margin-right: 170px">Email</label>
+    <label class="text-muted" style="margin-right: 100px">Contact Name</label>
+    <label class="text-muted">Contact Email</label>
+    <div class="div">
+      <input type="text" formControlName="email" />
+      <input type="text" formControlName="contactName" />
+      <input type="text" formControlName="contactEmail" />
+    </div>
+    <div class="btm-group mt-3">
+      <button
+        type="submit"
+        class="btn btn-primary me-2"
+        [disabled]="customerForm.invalid"
+      >
+        Save
+      </button>
+      <button type="button" class="btn btn-secondary" (click)="closeSidebar()">
+        Cancel
+      </button>
+    </div>
+  </form>
+  <div class="d-flex justify-content-between align-items-start">
+    <div>
+      <div class="tab-container">
+        <div class="tab" type="button" style="color: #555">Projects</div>
+      </div>
+    </div>
+  </div>
+  <app-get-customer-projects></app-get-customer-projects>
+</div>

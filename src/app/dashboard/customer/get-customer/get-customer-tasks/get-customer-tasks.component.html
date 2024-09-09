@@ -1,0 +1,41 @@
+<div class="get-customer-tasks" [ngClass]="{ open: isOpen }">
+  <div class="table-responsive" *ngIf="tasks.length !== 0; else noTasks">
+    <div class="d-flex justify-content-between">
+      <h2>{{ project.name }} Tasks</h2>
+      <button class="btn btn-secondary" (click)="closeSidebar()">Close</button>
+    </div>
+    <table class="table table-striped table-hover mt-3">
+      <thead class="table-dark">
+        <tr>
+          <th>Task Name</th>
+          <th>Description</th>
+          <th>Status</th>
+          <th>Start Date</th>
+          <th>End Date</th>
+          <th>Project</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let task of tasks">
+          <td>{{ task.name }}</td>
+          <td>{{ task.description }}</td>
+          <td>{{ task.status }}</td>
+          <td>
+            <span>
+              {{ task.startDate | date : "dd/MM/yyyy" }}
+            </span>
+          </td>
+          <td>
+            <span>
+              {{ task.endDate | date : "dd/MM/yyyy" }}
+            </span>
+          </td>
+          <td>{{ task.projectName }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <ng-template #noTasks>
+    <p>No tasks to display.</p>
+  </ng-template>
+</div>

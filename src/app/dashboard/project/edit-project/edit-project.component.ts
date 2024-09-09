@@ -15,7 +15,6 @@ import { AlertifyjsService } from '../../../services/AlertifyJsService/alertifyj
 export class EditProjectComponent {
   isOpen = false;
   customers: Customer[] = [];
-  selectedCustomerId: string | undefined;
   projectId: number;
 
   constructor(
@@ -46,7 +45,7 @@ export class EditProjectComponent {
     this.editProjectSidebarService.sidebarOpen$.subscribe((isOpen) => {
       this.isOpen = isOpen;
     });
-    this.editProjectSidebarService.taskId$.subscribe((projectId) => {
+    this.editProjectSidebarService.projectId$.subscribe((projectId) => {
       this.projectId = projectId;
       if (this.projectId) {
         this.loadProjectDetail(this.projectId);

@@ -68,7 +68,6 @@ export class AddProjectComponent {
       this.model.customerId = 0;
     }
     this.model.status = 'active';
-    console.log(this.model);
     this.projectService.addProject(this.model).subscribe(
       () => {
         this.alertifyService.success('Project added suucessfully');

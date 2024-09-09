@@ -1,0 +1,60 @@
+.add-customer-sidebar {
+  position: fixed;
+  right: -400px;
+  width: 400px;
+  top: 0;
+  height: 100%;
+  background-color: #ffff;
+  transition: right 0.3s ease;
+  padding: 20px;
+  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}
+
+.add-customer-sidebar.open {
+  right: 0;
+}
+
+.close-btn {
+  background-color: transparent;
+  border: none;
+  font-size: 18px;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+}
+
+.close-btn:hover {
+  color: #f00;
+}
+
+.add-customer-sidebar form {
+  display: flex;
+  flex-direction: column;
+}
+
+.add-customer-sidebar label {
+  margin-bottom: 5px; /* Etiketin input'tan az bir mesafe üstte olması için */
+}
+
+.add-customer-sidebar input,
+.add-customer-sidebar textarea {
+  width: 100%;
+  margin-bottom: 20px; /* Her bir input arasında boşluk */
+  padding: 10px;
+  font-size: 16px;
+  box-sizing: border-box; /* Padding'i de genişliğe dahil eder */
+  border: none;
+  border-radius: 5px;
+  background-color: rgb(236, 239, 246);
+  display: block;
+  resize: none;
+}
+.add-customer-sidebar input:focus,
+.add-customer-sidebar textarea:focus {
+  outline: none;
+}
+.btn {
+  width: 100px;
+}

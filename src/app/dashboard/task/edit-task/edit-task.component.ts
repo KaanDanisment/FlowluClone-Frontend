@@ -20,7 +20,6 @@ import { EditTaskSidebarService } from '../../../services/sidebar/TaskSidebar/ed
 export class EditTaskComponent {
   isOpen = false;
   projects: ProjectDto[] = [];
-  selectedProjectId: string | undefined;
   taskId: number;
 
   constructor(

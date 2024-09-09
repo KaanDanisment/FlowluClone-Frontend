@@ -1,0 +1,41 @@
+<div class="table-container" (mousemove)="onMouseMove($event)">
+  <table>
+    <thead>
+      <tr>
+        <th>Project</th>
+        <th>Customer</th>
+        <th>Description</th>
+        <th>Status</th>
+        <th>Start Date</th>
+        <th>End Date</th>
+        <th>Income</th>
+        <th>Expenses</th>
+        <th>Revenue</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let project of projects">
+        <td
+          class="customer-name"
+          style="cursor: pointer"
+          (click)="openTaskSidebar(project)"
+        >
+          {{ project.name }}
+        </td>
+        <td>{{ project.customerName }}</td>
+        <td>{{ project.description }}</td>
+        <td>{{ project.status }}</td>
+        <td>{{ project.startDate | date : "dd/MM/yyyy" }}</td>
+        <td>{{ project.endDate | date : "dd/MM/yyyy" }}</td>
+        <td>{{ project.income | currency : "USD" : true }}</td>
+        <td>{{ project.expenses | currency : "USD" : true }}</td>
+        <td *ngIf="project.income; else noIncome">
+          {{ project.income - project.expenses | currency : "USD" : true }}
+        </td>
+        <ng-template #noIncome>
+          <td></td>
+        </ng-template>
+      </tr>
+    </tbody>
+  </table>
+</div>

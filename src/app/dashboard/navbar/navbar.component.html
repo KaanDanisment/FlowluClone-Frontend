@@ -1,8 +1,10 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">Flowlu Clone</a>
+    <a class="navbar-brand text-white" [routerLink]="['/dashboard/tasks']"
+      >Flowlu Clone</a
+    >
     <div class="d-flex align-items-center">
-      <a href="#" class="btn btn-outline-light">Logout</a>
+      <a (click)="logout()" class="btn btn-outline-light">Logout</a>
     </div>
   </div>
 </nav>

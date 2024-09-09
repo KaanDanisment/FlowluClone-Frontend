@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { TaskService } from '../../../services/TaskService/task.service';
 import { TaskDto } from '../../../models/Dto/TaskDto';
 import { Task } from '../../../models/task';
@@ -12,19 +12,29 @@ import { EditTaskSidebarService } from '../../../services/sidebar/TaskSidebar/ed
 export class ToDoListComponent {
   constructor(
     private taskService: TaskService,
-    private changeDetector: ChangeDetectorRef,
     private editTaskSidebarService: EditTaskSidebarService
   ) {}
 
   tasks: TaskDto[] = [];
   openMenuIndex: number | null = null;
 
+  searchTerm: string = '';
+  filteredTasks: TaskDto[] = [];
+
   ngOnInit() {
+    this.taskService.getTasks();
     this.taskService.tasks$.subscribe((tasks) => {
       this.tasks = tasks.filter((task) => task.status !== 'completed');
+      this.filterTasks();
     });
-
-    this.taskService.getTasks();
+  }
+  filterTasks(): void {
+    const term = this.searchTerm.toLowerCase();
+    this.filteredTasks = this.tasks.filter(
+      (task) =>
+        task.name.toLowerCase().includes(term) ||
+        (task.projectName && task.projectName.toLowerCase().includes(term))
+    );
   }
 
   deleteTask(taskId: number) {
@@ -117,5 +127,14 @@ export class ToDoListComponent {
   }
   trackByTaskId(index: number, task: Task): number {
     return task.id;
+  }
+  @HostListener('document:click', ['$event'])
+  closeMenu(event: Event): void {
+    const target = event.target as HTMLElement;
+
+    // Eğer tıklanan element menü içinde değilse menüyü kapat
+    if (!target.closest('.task-options')) {
+      this.openMenuIndex = null;
+    }
   }
 }
