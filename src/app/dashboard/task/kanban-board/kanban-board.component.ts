@@ -7,6 +7,7 @@ import {
   transferArrayItem,
 } from '@angular/cdk/drag-drop';
 import { EditTaskSidebarService } from '../../../services/sidebar/TaskSidebar/edit-task-sidebar.service';
+import { AuthService } from '../../../services/AuthService/auth.service';
 
 @Component({
   selector: 'app-kanban-board',
@@ -24,10 +25,11 @@ export class KanbanBoardComponent implements OnInit {
   ];
   connectedLists: string[] = [];
   openMenuIndex: number | null = null;
-
+  userRole: string | null = null;
   constructor(
     private taskService: TaskService,
-    private editTaskSidebarService: EditTaskSidebarService
+    private editTaskSidebarService: EditTaskSidebarService,
+    private authService: AuthService
   ) {}
 
   ngOnInit() {
@@ -38,6 +40,8 @@ export class KanbanBoardComponent implements OnInit {
     });
 
     this.connectedLists = this.columns.map((column) => column.id);
+
+    this.userRole = this.authService.getUserRole();
   }
 
   getTasksByStatus(status: string): TaskDto[] {

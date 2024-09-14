@@ -28,6 +28,10 @@ import { GetCustomerComponent } from './customer/get-customer/get-customer.compo
 import { GetCustomerProjectsComponent } from './customer/get-customer/get-customer-projects/get-customer-projects.component';
 import { GetCustomerTasksComponent } from './customer/get-customer/get-customer-tasks/get-customer-tasks.component';
 import { HomeComponent } from './home/home.component';
+import { TeamComponent } from './team/team.component';
+import { TeamNavbarComponent } from './team/team-navbar/team-navbar.component';
+import { TeamMemberListComponent } from './team/team-member-list/team-member-list.component';
+import { AddTeamMemberComponent } from './team/add-team-member/add-team-member.component';
 
 @NgModule({
   declarations: [
@@ -55,6 +59,10 @@ import { HomeComponent } from './home/home.component';
     GetCustomerProjectsComponent,
     GetCustomerTasksComponent,
     HomeComponent,
+    TeamComponent,
+    TeamNavbarComponent,
+    TeamMemberListComponent,
+    AddTeamMemberComponent,
   ],
   imports: [
     CommonModule,

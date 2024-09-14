@@ -25,6 +25,7 @@
             (change)="completeTask(task)"
             [checked]="task.status === 'completed'"
             class="me-3"
+            *ngIf="userRole !== 'Employee'"
           />
         </div>
         <div class="task-content">
@@ -41,7 +42,7 @@
             Project: {{ task.projectName }}
           </small>
         </div>
-        <div class="task-options">
+        <div class="task-options" *ngIf="userRole !== 'Employee'">
           <i class="fa-solid fa-ellipsis-vertical" (click)="toggleMenu(i)"></i>
           <ul *ngIf="openMenuIndex === i" class="task-menu">
             <li>

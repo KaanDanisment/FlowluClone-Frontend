@@ -5,6 +5,7 @@ import { ProjectService } from '../../services/ProjectService/project.service';
 import { TaskService } from '../../services/TaskService/task.service';
 import { AddTaskSidebarService } from '../../services/sidebar/TaskSidebar/add-task-sidebar.service';
 import { ProjectAddSidebarService } from '../../services/sidebar/ProjectSidebar/project-add-sidebar.service';
+import { AuthService } from '../../services/AuthService/auth.service';
 
 @Component({
   selector: 'app-home',
@@ -14,12 +15,13 @@ import { ProjectAddSidebarService } from '../../services/sidebar/ProjectSidebar/
 export class HomeComponent {
   projects: ProjectDto[] = [];
   tasks: TaskDto[] = [];
-
+  userRole: string | null = null;
   constructor(
     private projectService: ProjectService,
     private taskService: TaskService,
     private addTaskSidebarService: AddTaskSidebarService,
-    private addProjectSidebarService: ProjectAddSidebarService
+    private addProjectSidebarService: ProjectAddSidebarService,
+    private authService: AuthService
   ) {}
 
   ngOnInit() {
@@ -31,6 +33,7 @@ export class HomeComponent {
     this.taskService.tasks$.subscribe((tasks) => {
       this.tasks = tasks;
     });
+    this.userRole = this.authService.getUserRole();
   }
   openAddTaskSidebar(event: MouseEvent) {
     event.stopPropagation();

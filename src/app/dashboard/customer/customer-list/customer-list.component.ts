@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Customer } from '../../../models/customer';
 import { CustomerService } from '../../../services/CustomerService/customer.service';
 import { GetCustomerSidebarService } from '../../../services/sidebar/CustomerSidebar/get-customer-sidebar.service';
+import { AuthService } from '../../../services/AuthService/auth.service';
 
 @Component({
   selector: 'app-customer-list',
@@ -20,9 +21,11 @@ export class CustomerListComponent {
   }
   searchTerm: string = '';
   filteredCustomers: Customer[] = [];
+  userRole: string | null = null;
   constructor(
     private customerService: CustomerService,
-    private getCustomerSidebarService: GetCustomerSidebarService
+    private getCustomerSidebarService: GetCustomerSidebarService,
+    private authService: AuthService
   ) {}
 
   ngOnInit() {
@@ -31,6 +34,7 @@ export class CustomerListComponent {
       this.customers = customers;
       this.filterCustomer();
     });
+    this.userRole = this.authService.getUserRole();
   }
   filterCustomer(): void {
     const term = this.searchTerm.toLowerCase();

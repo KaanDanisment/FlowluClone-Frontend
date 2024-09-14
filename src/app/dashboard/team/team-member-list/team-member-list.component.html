@@ -1,0 +1,63 @@
+<div class="container">
+  <div *ngIf="team != null; else noTeam">
+    <div class="mb-3">
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Search members..."
+        [(ngModel)]="searchTerm"
+        (input)="filterMember()"
+        style="width: 375px"
+      />
+    </div>
+    <div *ngIf="selectedMember" class="mb-3">
+      <button
+        class="open-sidebar-button btn btn-secondary me-2"
+        (click)="removeMember()"
+      >
+        Delete
+      </button>
+    </div>
+    <div class="table">
+      <table>
+        <thead>
+          <tr>
+            <th style="padding: 8px 10px"></th>
+            <th>Firs Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Role</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let member of filteredMembers">
+            <td style="padding: 8px 10px">
+              <input
+                class="checkbox"
+                type="checkbox"
+                [checked]="selectedMember === member"
+                (change)="selectMember(member)"
+                *ngIf="userRole === 'Admin' || userRole === 'User'"
+              />
+            </td>
+            <td>{{ member.firstName }}</td>
+            <td>{{ member.lastName }}</td>
+            <td>{{ member.email }}</td>
+            <td>{{ member.role }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <ng-template #noTeam>
+    <div class="no-team-wrapper">
+      <p>No team to display</p>
+      <button
+        (click)="createTeam()"
+        class="open-sidebar-button btn btn-primary"
+      >
+        Create Team
+      </button>
+    </div>
+  </ng-template>
+</div>

@@ -7,6 +7,7 @@
           <button
             class="btn btn-primary"
             (click)="openAddProjectSidebar($event)"
+            *ngIf="userRole !== 'Employee'"
           >
             Add Project
           </button>
@@ -62,7 +63,11 @@
       <div class="list-wrapper">
         <div class="list-header">
           <h3>Tasks</h3>
-          <button class="btn btn-primary" (click)="openAddTaskSidebar($event)">
+          <button
+            class="btn btn-primary"
+            (click)="openAddTaskSidebar($event)"
+            *ngIf="userRole !== 'Employee'"
+          >
             Add Task
           </button>
         </div>

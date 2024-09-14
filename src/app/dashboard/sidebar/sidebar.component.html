@@ -30,7 +30,7 @@
         <span class="nav-text">Tasks</span>
       </a>
     </li>
-    <li class="nav-item mb-2">
+    <li class="nav-item mb-2" *ngIf="userRole !== 'Employee'">
       <a
         [routerLink]="['/dashboard/customers']"
         routerLinkActive="active-link"
@@ -38,6 +38,16 @@
       >
         <i class="fa-brands fa-intercom icon-large"></i>
         <span class="nav-text">Customers</span>
+      </a>
+    </li>
+    <li class="nav-item mb-2">
+      <a
+        [routerLink]="['/dashboard/myteam']"
+        routerLinkActive="active-link"
+        class="nav-link text-white d-flex flex-column align-items-center"
+      >
+        <i class="fa-solid fa-people-group"></i>
+        <span class="nav-text">My Team</span>
       </a>
     </li>
   </ul>

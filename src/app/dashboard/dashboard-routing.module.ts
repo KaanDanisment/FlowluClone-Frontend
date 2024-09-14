@@ -11,6 +11,8 @@ import { ProjectArchivedComponent } from './project/project-archived/project-arc
 import { CustomerComponent } from './customer/customer.component';
 import { CustomerListComponent } from './customer/customer-list/customer-list.component';
 import { HomeComponent } from './home/home.component';
+import { TeamComponent } from './team/team.component';
+import { TeamMemberListComponent } from './team/team-member-list/team-member-list.component';
 
 const routes: Routes = [
   {
@@ -44,6 +46,14 @@ const routes: Routes = [
         children: [
           { path: '', redirectTo: 'list', pathMatch: 'full' },
           { path: 'list', component: CustomerListComponent },
+        ],
+      },
+      {
+        path: 'myteam',
+        component: TeamComponent,
+        children: [
+          { path: '', redirectTo: 'team-member', pathMatch: 'full' },
+          { path: 'team-member', component: TeamMemberListComponent },
         ],
       },
     ],

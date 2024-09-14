@@ -1,0 +1,30 @@
+<div class="add-team-member" [ngClass]="{ open: isOpen }">
+  <h2>Add Team Member</h2>
+  <form [formGroup]="memberForm" (ngSubmit)="addMember()">
+    <div>
+      <label for="task">Email</label>
+      <input type="text" id="email" name="email" formControlName="UserEmail" />
+    </div>
+    <div>
+      <label for="role">Role</label>
+      <select class="form-control" id="role" name="role" formControlName="Role">
+        <option value="Admin">Admin</option>
+        <option value="Employee" selected>Employee</option>
+        <option value="Manager">Manager</option>
+      </select>
+    </div>
+
+    <div class="mt-3">
+      <button
+        type="submit"
+        class="btn btn-primary me-2"
+        [disabled]="memberForm.invalid"
+      >
+        Save
+      </button>
+      <button type="button" class="btn btn-secondary" (click)="closeSidebar()">
+        Cancel
+      </button>
+    </div>
+  </form>
+</div>

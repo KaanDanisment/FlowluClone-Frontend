@@ -19,7 +19,6 @@ export class TaskService {
 
   private path = 'https://localhost:7130/api/tasks';
 
-  // Görevleri Getir
   getTasks() {
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders({

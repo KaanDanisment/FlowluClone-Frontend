@@ -4,6 +4,7 @@ import { ProjectDto } from '../../../models/Dto/ProjectDto';
 import { Project } from '../../../models/project';
 import { ProjectEditSidebarService } from '../../../services/sidebar/ProjectSidebar/project-edit-sidebar.service';
 import { GetTasksSidebarService } from '../../../services/sidebar/TaskSidebar/get-tasks-sidebar.service';
+import { AuthService } from '../../../services/AuthService/auth.service';
 
 @Component({
   selector: 'app-project-list',
@@ -23,10 +24,12 @@ export class ProjectListComponent {
       this.selectedProject = project;
     }
   }
+  userRole: string | null = null;
   constructor(
     private projectService: ProjectService,
     private editProjectSidebarService: ProjectEditSidebarService,
-    private getTasksSidebarService: GetTasksSidebarService
+    private getTasksSidebarService: GetTasksSidebarService,
+    private authService: AuthService
   ) {}
 
   ngOnInit() {
@@ -35,6 +38,7 @@ export class ProjectListComponent {
       this.projects = projects.filter((p) => p.status === 'active');
       this.filterProject();
     });
+    this.userRole = this.authService.getUserRole();
   }
 
   filterProject(): void {

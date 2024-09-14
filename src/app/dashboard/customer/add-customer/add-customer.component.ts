@@ -58,7 +58,7 @@ export class AddCustomerComponent {
         this.alertifyService.success('Customer added suucessfully');
       },
       (error) => {
-        console.log(error.err);
+        console.log(error);
       }
     );
     this.customerForm.reset();

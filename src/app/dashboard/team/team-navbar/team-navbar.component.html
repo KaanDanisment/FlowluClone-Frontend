@@ -1,0 +1,11 @@
+<div class="d-flex justify-content-between align-items-start">
+  <div>
+    <h3>My Team</h3>
+  </div>
+  <div *ngIf="team != null && (userRole === 'Admin' || userRole === 'User')">
+    <button class="btn btn-primary me-2" (click)="openSidebar()">
+      Add User
+    </button>
+    <button class="btn btn-danger" (click)="deleteTeam()">Delete Team</button>
+  </div>
+</div>

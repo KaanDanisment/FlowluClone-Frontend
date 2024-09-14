@@ -5,6 +5,7 @@
   <button
     class="open-sidebar-button btn btn-primary"
     (click)="openSidebar($event)"
+    *ngIf="userRole === 'Admin' || userRole === 'User'"
   >
     Create
   </button>

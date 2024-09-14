@@ -38,6 +38,7 @@
                 type="checkbox"
                 [checked]="selectedCustomer === customer"
                 (change)="selectCustomer(customer)"
+                *ngIf="userRole === 'Admin' || userRole === 'User'"
               />
             </td>
             <td

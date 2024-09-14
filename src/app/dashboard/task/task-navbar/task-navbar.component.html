@@ -27,11 +27,14 @@
       List View
     </button>
   </div>
-  <button
-    class="open-sidebar-button"
-    (click)="openSidebar($event)"
-    class="btn btn-primary"
-  >
-    Create
-  </button>
+  <div>
+    <button
+      class="open-sidebar-button"
+      (click)="openSidebar($event)"
+      class="btn btn-primary"
+      *ngIf="userRole !== 'Employee'"
+    >
+      Create
+    </button>
+  </div>
 </div>

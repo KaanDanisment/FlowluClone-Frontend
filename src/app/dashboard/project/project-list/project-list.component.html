@@ -49,6 +49,7 @@
                 type="checkbox"
                 [checked]="selectedProject === project"
                 (change)="selectProject(project)"
+                *ngIf="userRole !== 'Employee'"
               />
             </td>
             <td style="cursor: pointer" (click)="openTaskSidebar(project)">

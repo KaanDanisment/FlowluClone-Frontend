@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ProjectAddSidebarService } from '../../../services/sidebar/ProjectSidebar/project-add-sidebar.service';
+import { AuthService } from '../../../services/AuthService/auth.service';
 
 @Component({
   selector: 'app-project-navbar',
@@ -8,12 +9,17 @@ import { ProjectAddSidebarService } from '../../../services/sidebar/ProjectSideb
 })
 export class ProjectNavbarComponent {
   selectedTab: string = 'List';
-  constructor(private addProjectSidebarService: ProjectAddSidebarService) {}
+  userRole: string | null = null;
+  constructor(
+    private addProjectSidebarService: ProjectAddSidebarService,
+    private authService: AuthService
+  ) {}
   ngOnInit() {
     const storedTab = localStorage.getItem('selectedTab');
     if (storedTab) {
       this.selectedTab = storedTab;
     }
+    this.userRole = this.authService.getUserRole();
   }
   openSidebar(event: MouseEvent) {
     event.stopPropagation();

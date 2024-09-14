@@ -26,6 +26,7 @@
   <button
     class="open-sidebar-button btn btn-primary"
     (click)="openSidebar($event)"
+    *ngIf="userRole !== 'Employee'"
   >
     Create
   </button>

@@ -19,7 +19,7 @@
 }
 
 .table-container::-webkit-scrollbar-track {
-  background-color: #f1f1f1; /* Kaydırma çubuğunun arka plan rengi */
+  background-color: #f8f9fd; /* Kaydırma çubuğunun arka plan rengi */
 }
 table {
   width: max-content;
@@ -34,7 +34,7 @@ td {
 }
 
 th {
-  background-color: #f4f4f4;
+  background-color: #f1f3f9;
   position: sticky;
   top: 0;
   z-index: 1;

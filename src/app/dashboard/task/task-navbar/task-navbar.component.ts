@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AddTaskSidebarService } from '../../../services/sidebar/TaskSidebar/add-task-sidebar.service';
+import { AuthService } from '../../../services/AuthService/auth.service';
 
 @Component({
   selector: 'app-task-navbar',
@@ -8,13 +9,18 @@ import { AddTaskSidebarService } from '../../../services/sidebar/TaskSidebar/add
 })
 export class TaskNavbarComponent {
   selectedButton: string = 'Kanban Board';
-  constructor(private addTaskSidebarService: AddTaskSidebarService) {}
+  userRole: string | null = null;
+  constructor(
+    private addTaskSidebarService: AddTaskSidebarService,
+    private authService: AuthService
+  ) {}
 
   ngOnInit() {
     const storedButton = localStorage.getItem('selectedButton');
     if (storedButton) {
       this.selectedButton = storedButton;
     }
+    this.userRole = this.authService.getUserRole();
   }
 
   openSidebar(event: MouseEvent) {

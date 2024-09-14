@@ -3,6 +3,7 @@ import { TaskService } from '../../../services/TaskService/task.service';
 import { TaskDto } from '../../../models/Dto/TaskDto';
 import { Task } from '../../../models/task';
 import { EditTaskSidebarService } from '../../../services/sidebar/TaskSidebar/edit-task-sidebar.service';
+import { AuthService } from '../../../services/AuthService/auth.service';
 
 @Component({
   selector: 'app-to-do-list',
@@ -12,7 +13,8 @@ import { EditTaskSidebarService } from '../../../services/sidebar/TaskSidebar/ed
 export class ToDoListComponent {
   constructor(
     private taskService: TaskService,
-    private editTaskSidebarService: EditTaskSidebarService
+    private editTaskSidebarService: EditTaskSidebarService,
+    private authService: AuthService
   ) {}
 
   tasks: TaskDto[] = [];
@@ -21,12 +23,14 @@ export class ToDoListComponent {
   searchTerm: string = '';
   filteredTasks: TaskDto[] = [];
 
+  userRole: string | null = null;
   ngOnInit() {
     this.taskService.getTasks();
     this.taskService.tasks$.subscribe((tasks) => {
       this.tasks = tasks.filter((task) => task.status !== 'completed');
       this.filterTasks();
     });
+    this.userRole = this.authService.getUserRole();
   }
   filterTasks(): void {
     const term = this.searchTerm.toLowerCase();

@@ -34,7 +34,7 @@
                 >Project: {{ task.projectName }}</small
               >
             </div>
-            <div class="task-options">
+            <div class="task-options" *ngIf="userRole !== 'Employee'">
               <i
                 class="fa-solid fa-ellipsis-vertical"
                 (click)="toggleMenu(task.id)"

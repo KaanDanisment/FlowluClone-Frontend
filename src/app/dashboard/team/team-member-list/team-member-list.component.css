@@ -1,0 +1,54 @@
+.no-team-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 50vh;
+  background-color: #fff;
+  padding-bottom: 100px;
+}
+
+.no-team-wrapper p {
+  font-size: 1.5rem;
+}
+.table-container {
+  overflow-x: auto;
+  white-space: nowrap;
+  position: relative;
+  max-width: 100%;
+}
+
+table {
+  width: max-content;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  padding: 8px 70px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+th {
+  background-color: #f4f4f4;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  font-family: "Arial", sans-serif;
+  font-size: 14px;
+  font-weight: bold;
+  color: #333;
+}
+
+tr:hover {
+  background-color: #f1f1f1;
+}
+.checkbox {
+  transform: scale(1.5);
+  margin-left: 20px;
+}
+.customer-name:hover {
+  color: #3761e9;
+  transition: 0.3s;
+}
